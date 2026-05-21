@@ -1,0 +1,37 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wavecast-ai
+  labels:
+    app: wavecast-ai
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wavecast-ai
+  template:
+    metadata:
+      labels:
+        app: wavecast-ai
+    spec:
+      containers:
+      - name: wavecast-ai
+        image: gcr.io/[PROJECT_ID]/wavecast-ai:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: GITHUB_PAT
+          valueFrom:
+            secretKeyRef:
+              name: wavecast-secrets
+              key: github-pat
+        - name: NODE_ENV
+          value: "production"

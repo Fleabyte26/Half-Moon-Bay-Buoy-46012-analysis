@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 213 19% 10%;
+    --foreground: 210 40% 98%;
+    --card: 215 19% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 213 19% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 215 73% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 215 19% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215 19% 22%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 259 100% 65%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 19% 25%;
+    --input: 215 19% 25%;
+    --ring: 215 73% 50%;
+    --radius: 0.75rem;
+    --chart-1: 215 73% 50%;
+    --chart-2: 259 100% 65%;
+    --chart-3: 199 89% 48%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+.glass-panel {
+  @apply bg-card/60 backdrop-blur-md border border-white/5;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/30;
+}

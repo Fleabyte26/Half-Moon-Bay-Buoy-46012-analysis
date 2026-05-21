@@ -1,0 +1,46 @@
+
+{
+  "entities": {
+    "BuoyStation": {
+      "title": "Buoy Station",
+      "description": "Metadata for a NOAA buoy station.",
+      "type": "object",
+      "properties": {
+        "stationId": { "type": "string" },
+        "name": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "lastEnriched": { "type": "string", "format": "date-time" },
+        "isProcessing": { "type": "boolean" }
+      },
+      "required": ["stationId", "name"]
+    },
+    "BuoyReading": {
+      "title": "Buoy Reading",
+      "description": "A single historical or real-time data point for a buoy.",
+      "type": "object",
+      "properties": {
+        "stationId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "waveHeight": { "type": "number" },
+        "period": { "type": "number" },
+        "direction": { "type": "number" },
+        "windSpeed": { "type": "number" }
+      },
+      "required": ["stationId", "timestamp"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com"]
+  },
+  "firestore": {
+    "/buoys/{stationId}": {
+      "schema": "BuoyStation",
+      "description": "Collection of active buoy nodes."
+    },
+    "/buoy_readings/{readingId}": {
+      "schema": "BuoyReading",
+      "description": "The 'Big Table' of historical buoy data points."
+    }
+  }
+}
